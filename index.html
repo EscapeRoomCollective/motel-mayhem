@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Interactive Map</title>
+</head>
+<body>
+    <div class="gameContainer">
+
+    <div id="startRoom">
+        <p>Welcome to the game</p>
+        <button onclick="fromTo('startRoom', 'room1Off'); startGame()">START GAME</button>
+    </div>
+
+    <!-- Room 1 -->
+
+    <div id="room1Off" class="hidden">
+        <p>Hmmm, it's dark in here.</p>
+     <div class="imageRoom1Off">
+            <img src="Light_Switch_Clickable.png" id="iconLightSwitch" class="hotspot" onclick="fromTo('room1Off', 'room1')">
+     </div>
+    </div>
+
+    <div id="room1" class="hidden">
+        <p>A cheap hotel room, with a single bed, a TV on a cabinet, and some tacky decor on the walls.</p>
+    <div class="imageRoom1">
+        <img src="Pillow_Clickable.png" id="iconPillowDown" class="hotspot" onclick="togglePillow()">
+        <img src="Screwdriver_Clickable.png" id="itemScrewdriver" class="hotspot" onclick="interactRoom1('itemScrewdriver'); alert('You have added a screwdriver to your inventory!')">
+        <img src="Book_Clickable.png" id="iconBook" class="hotspot" onclick="fromTo('room1', 'book')">
+        <img src="TV_Off_Clickable_And_Zoom.png" id="iconTelevision" class="hotspot" onclick="tvCheck()">
+        <img src="Drawers_Clickable_And_Zoom.png" id="iconDrawers" class="hotspot" onclick="fromTo('room1', 'drawers')">
+        <img src="Painting_Clickable.png" id="iconPainting" class="hotspot" onclick="fromTo('room1', 'painting')">
+        <img src="Door_Clickable.png" id="iconDoor" class="hotspot" onclick="doorCheck()">
+    </div>
+    </div>
+
+    <div id="book" class="hidden">
+        <p>Perhaps this could be useful?</p>
+        <img src="Book_Zoom.png">
+        <button onclick="fromTo('book', 'room1')">Return to Room</button>
+    </div>
+
+    <div id="televisionOff" class="hidden">
+        <p>Hmmm, looks like we need to find the remote.</p>
+        <img src="TV_Off_Clickable_And_Zoom.png">
+        <button onclick="fromTo('televisionOff', 'room1')">Return to Room</button>
+    </div>
+    <div id="televisionOn" class="hidden">
+        <p>Seems like a cool concert.</p>
+        <img src="TV_On_Zoom.png">
+        <button onclick="fromTo('televisionOn', 'room1')">Return to Room</button>
+    </div>
+
+    <div id="drawers" class="hidden">
+        <p>This is a cabinet with a padlock requiring a four-digit code.</p>
+        <img src="Drawers_Clickable_And_Zoom.png" alt="">
+        <input type="text" id="answer1Drawers" placeholder="Enter code">
+        <button onclick="checkAnswerRoom1('answer1Drawers', '3201', 'drawers', 'drawersOpen')">Submit</button>
+        <button onclick="fromTo('drawers', 'room1')">Return to Room</button>
+    </div>
+    <div id="drawersOpen" class="hidden">
+        <p>The cabinet springs open, revealing some objects.</p>
+        <div class="imageDrawers">
+            <img src="Remote_Clickable.png" id="itemRemote" class="hotspot" onclick="interactRoom1('itemRemote'); alert('You play around with the remote and the TV whirrs into life!'); tvOn()">
+            <img src="Note_Clickable_And_Zoom.png" id="iconNote" class="hotspot" onclick="fromTo('drawersOpen', 'note')">
+         </div>
+        <button onclick="fromTo('drawersOpen', 'room1')">Return to Room</button>
+    </div>
+    <div id="note" class="hidden">
+        <p>This may come in handy?</p>
+        <img src="Note_Clickable_And_Zoom.png" style="width:350px;height:500px;margin:auto">
+        <button onclick="fromTo('note', 'drawersOpen')">Return to Cabinet</button>
+    </div>
+
+    <div id="painting" class="hidden">
+        <p>This is a pretty weird poster. Who screws art into the walls?</p>
+        <div class="imagePainting">
+            <img src="Screw_Clickable.png" id="iconScrew1" class="hotspot" onclick="removeScrew(1)">
+            <img src="Screw_Clickable.png" id="iconScrew2" class="hotspot" onclick="removeScrew(2)">
+            <img src="Screw_Clickable.png" id="iconScrew3" class="hotspot" onclick="removeScrew(3)">
+            <img src="Screw_Clickable.png" id="iconScrew4" class="hotspot" onclick="removeScrew(4)">
+         </div>
+        <button onclick="fromTo('painting', 'room1')">Return to Room</button>
+    </div>
+    <div id="safe" class="hidden">
+        <p>There is a hidden safe behind the painting!</p>
+        <img src="Safe_Closed_Zoom.png">
+        <input type="text" id="answer1Safe" placeholder="Enter code">
+        <button onclick="checkAnswerRoom1('answer1Safe', '659', 'safe', 'safeOpen')">Submit</button>
+        <button onclick="fromTo('safe', 'room1')">Return to Room</button>
+    </div>
+    <div id="safeOpen" class="hidden">
+        <p>Inside the safe is a small golden key.</p>
+        <div class="imageSafe">
+            <img src="Key_On_Hook_Clickable.png" id="itemKey" class="hotspot" onclick="interactRoom1('itemKey'); alert('You grab the key. This could be your ticket out of here!')">
+         </div>
+        <button onclick="fromTo('safeOpen', 'room1')">Return to Room</button>
+    </div>
+
+    <div id="congrats" class="hidden">
+        <p>Well done! You have escaped!</p>
+        <img src="Congrats.jpg">
+    </div>
+
+     <!-- Room 1 Notes -->
+
+    <div id="pillow1" class="hidden">
+        <p>This puzzle wants you to turn on the lights</p>
+        <button onclick="interactRoom1('lightsOn'); alert('Lights have been turned on!')">Turn on Lights?</button>
+        <button onclick="fromTo('puzzle1a', 'room1')">Return to Room</button>
+    </div>
+
+    <div id="puzzle1b" class="hidden">
+        <p>This puzzle has the answer 123</p>
+        <img src="puzzle1b.jpg" alt="">
+        <input type="text" id="answer1b" placeholder="Enter code">
+        <button onclick="checkAnswerRoom1('answer1b', '123', 'puzzle1b', 'puzzle1b-complete')">Submit</button>
+        <button onclick="fromTo('puzzle1b', 'room1')">Return to Room</button>
+    </div>
+    <div id="puzzle1b-complete" class="hidden">
+        <p>Here is Item 1</p>
+        <button onclick="interactRoom1('item1'); alert('Item 1 is added to your inventory!')">Pick Up Item 1?</button>
+        <button onclick="fromTo('puzzle1b-complete', 'room1')">Return to Map</button>
+    </div>
+
+    <div id="puzzle1c" class="hidden">
+        <p>This puzzle is just some info</p>
+        <img src="puzzle1c.jpg" alt="">
+        <button onclick="fromTo('puzzle1c', 'room1')">Return to Room</button>
+    </div>
+
+    <div id="puzzle1d" class="hidden">
+        <p>A keypad is revealed and the code is 987</p>
+        <img src="puzzle1d.jpg" alt="">
+        <input type="text" id="answer1d" placeholder="Enter code">
+        <button onclick="checkExitRoom1('answer1d', '987', 'puzzle1d')">Submit</button>
+        <button onclick="fromTo('puzzle1d', 'room1')">Return to Room</button>
+    </div>
+
+
+    <!-- Room 2 -->
+
+    <div id="room2" class="hidden">
+        <p>YOU'RE NOW IN THE CORRIDOR YAY</p>
+    <div class="imageRoom2">
+        <img src="icon.png" id="hotspot2a" class="hotspot" onclick="fromTo('room2', 'puzzle2a'); isVisited('hotspot2a')" alt="p2a">
+        <img src="icon.png" id="hotspot2b" class="hotspot" onclick="fromTo('room2', 'puzzle2b'); isVisited('hotspot2b')" alt="p2b">
+        <img src="icon.png" id="hotspot2c" class="hotspot" onclick="fromTo('room2', 'puzzle2c'); isVisited('hotspot2c')" alt="p2c">
+        <img src="icon.png" id="hotspot2d" class="hidden hotspot" onclick="fromTo('room2', 'puzzle2d'); isVisited('hotspot2d')" alt="p2d">
+    </div>
+    </div>
+    <div id="puzzle2a" class="hidden">
+        <p>This puzzle wants you to take down the poster</p>
+        <button onclick="interactRoom2('posterDown'); fromTo('puzzle2a', 'puzzle2a-complete')">Take down Poster?</button>
+        <button onclick="fromTo('puzzle2a', 'room2')">Return to Room 2</button>
+    </div>
+    <div id="puzzle2a-complete" class="hidden">
+        <p>The poster is now down, revealing some information.</p>
+        <button onclick="fromTo('puzzle2a-complete', 'room2')">Return to Room 2</button>
+    </div>
+
+    <div id="puzzle2b" class="hidden">
+        <p>This puzzle has the answer 444</p>
+        <img src="puzzle2b.jpg" alt="">
+        <input type="text" id="answer2b" placeholder="Enter code">
+        <button onclick="checkAnswerRoom2('answer2b', '444', 'puzzle2b', 'puzzle2bPart2')">Submit</button>
+        <button onclick="fromTo('puzzle2b', 'room2')">Return to Room 2</button>
+    </div>
+    <div id="puzzle2bPart2" class="hidden">
+        <p>The puzzle has the answer MATCH</p>
+        <img src="puzzle2b.jpg" alt="">
+        <input type="text" id="answer2bPart2" placeholder="Enter code">
+        <button onclick="checkAnswerRoom2('answer2bPart2', 'MATCH', 'puzzle2bPart2', 'puzzle2b-complete')">Submit</button>
+        <button onclick="fromTo('puzzle2bPart2', 'room2')">Return to Room 2</button>
+    </div>
+    <div id="puzzle2b-complete" class="hidden">
+        <p>Here is Item 2</p>
+        <button onclick="interactRoom2('item2'); alert('Item 2 has now been picked up!')">Pick Up Item 2?</button>
+        <button onclick="fromTo('puzzle2b-complete', 'room2')">Return to Room 2</button>
+    </div>
+
+    <div id="puzzle2c" class="hidden">
+        <p>This puzzle is just some info</p>
+        <img src="puzzle2c.jpg" alt="">
+        <button onclick="fromTo('puzzle2c', 'room2')">Return to Room 2</button>
+    </div>
+
+    <div id="puzzle2d" class="hidden">
+        <p>A keypad is revealed and the code is pop</p>
+        <img src="puzzle2d.jpg" alt="">
+        <input type="text" id="answer2d" placeholder="Enter code">
+        <button onclick="checkExitRoom2('answer2d', 'pop', 'puzzle2d')">Submit</button>
+        <button onclick="fromTo('puzzle2d', 'room2')">Return to Room 2</button>
+    </div>
+
+    <div id="game-complete" class="hidden">
+        <p>WELL DONE! You have completed the game!</p>
+        <button onclick="fromTo('game-complete', 'room1'); gameReset()">Restart?</button>
+    </div>
+
+    <!--
+
+    <div class="timer-container">
+        <p id="timer">20:00</p>
+    </div>
+
+    <div id="Bin" class="hidden">
+        <p>Beneath some pieces of scrunched up paper, you spot <strong>2 AA batteries.</strong></p>
+        <button onclick="pickUpBatteries()">Pick Up Batteries?</button>
+        <button onclick="returnToSelection('Bin')">Return to Room</button>
+    </div>
+
+    <div id="Desks" class="hidden">
+        <p>The desks are arranged in an unusual pattern.</p>
+        <img src="Desks.jpg" alt="desk in a pattern">
+        <button onclick="returnToSelection('Desks')">Return to Room</button>
+    </div>
+    -->
+
+    </div>
+</body>
+<script src="javascript.js"></script>
+</html>

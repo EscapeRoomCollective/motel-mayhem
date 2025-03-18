@@ -1,0 +1,168 @@
+/* General Page Styling */
+body {
+    font-family: 'Poppins', sans-serif; /* Modern font */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1e1e2e; /* Dark background */
+    color: #ffffff;
+    margin: 0;
+}
+
+/* Centered game container */
+.gameContainer {
+    background-color: #2a2a3b;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 90%;
+    max-width: 676px;
+}
+
+/* Hide elements until revealed */
+.hidden {
+    display: none;
+}
+
+/* Input field styling */
+input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #8888aa;
+    border-radius: 6px;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Button Styling */
+button {
+    background-color: #ff7f50; /* Coral color */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff5733; /* Darker coral on hover */
+}
+
+.imageRoom1Off {
+    position: relative;
+    width: 636px; /* Adjust to your main image size */
+    height: 450px;
+    margin: auto;
+    background-image: url('Room_Dark.png'); /* Main background image */
+    background-size: cover;
+}
+#iconLightSwitch { top: 42%; left: 64%; width: 20px; height: 20px;}
+
+.imageRoom1 {
+    position: relative;
+    width: 636; /* Adjust to your main image size */
+    height: 450px;
+    margin: auto;
+    background-image: url('Room_Empty.png'); /* Main background image */
+    background-size: cover;
+}
+#iconPillowDown { top: 65%; left: 6%; width: 100px; height: 53px; z-index: 3;}
+#iconPillowUp { top: 55%; left: 6%; width: 100px; height: 53px; z-index: 3;}
+#itemScrewdriver { top: 71.5%; left: 10%; width: 40px; height: 20px;}
+#iconBook { top: 89%; left: 18%; width: 103px; height: 38px;}
+#iconTelevision { top: 37.5%; left: 34%; width: 92px; height: 65px;}
+#iconDrawers { top: 48.5%; left: 30.5%; width: 131px; height: 93px;}
+#iconPainting { top: 13%; left: 70.5%; width: 121px; height: 158px;}
+#iconDoor { top: 25.5%; left: 47%; width: 115px; height: 188px;}
+
+.imageDrawers {
+    position: relative;
+    width: 636; /* Adjust to your main image size */
+    height: 450px;
+    margin: auto;
+    background-image: url('Drawers_Open_Empty_Zoom.png'); /* Main background image */
+    background-size: cover;
+}
+#itemRemote { top: 38%; left: 60%; width: 60px; height: 80px;}
+#iconNote { top: 34%; left: 30%; width: 70px; height: 90px;}
+
+.imagePainting {
+    position: relative;
+    width: 550px;
+    height: 450px;
+    margin: auto;
+    background-image: url('Painting_Zoom.png'); /* Main background image */
+    background-size: cover;
+}
+#iconScrew1 { top: 3%; left: 1%; width: 50px; height: 50px;}
+#iconScrew2 { top: 3%; left: 85%; width: 50px; height: 50px;}
+#iconScrew3 { top: 85%; left: 1%; width: 50px; height: 50px;}
+#iconScrew4 { top: 85%; left: 85%; width: 50px; height: 50px;}
+
+.imageSafe {
+    position: relative;
+    width: 550px;
+    height: 450px;
+    margin: auto;
+    background-image: url('Safe_Open_Empty_Zoom.png'); /* Main background image */
+    background-size: cover;
+}
+#itemKey { top: 33%; left: 47%; width: 70px; height: 120px;}
+
+
+/* Room 2 */
+
+.imageRoom2 {
+    position: relative;
+    width: 636; /* Adjust to your main image size */
+    height: 450px;
+    margin: auto;
+    background-image: url('room2.jpg'); /* Main background image */
+    background-size: cover;
+}
+
+.hotspot {
+    position: absolute;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+/* Positioning the icons */
+
+#hotspot2a { top: 45%; left: 90%; width: 20px; height: 20px;}
+#hotspot2b { top: 50%; left: 10%; width: 20px; height: 20px;}
+#hotspot2c { top: 90%; left: 25%; width: 20px; height: 20px;}
+#hotspot2d { top: 85%; left: 85%; width: 20px; height: 20px;}
+
+/* Hover effect */
+.hotspot:hover {
+    transform: scale(1.2); /* Slightly enlarges the icon */
+}
+
+.hotspot.visited {
+    opacity: 0.5; /* Makes the icon appear faded */
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    margin: 10px;
+  }
+
+.timerContainer {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#timer {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff4c4c;
+}
